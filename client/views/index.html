@@ -58,7 +58,7 @@
 				</div>
 
 				<h2 class="text-center">Clueless Unicorns</h2>
-				<p>Clueless Unicorns is a simplified version of the popular board game Clue&reg;. The requirements of the application were set forth by the professors of Foundations of Software Engineering at Johns Hopkins University. In fact, this online-murder-mystery board game is the final project of the aforementioned course! We've moved through distinct software development lifecycle phases, providing deliverables all along the way. Until...we made it here. <b>"We?"</b>, you ask?</p>
+				<p>Clueless Unicorns is a simplified version of the popular board game Clue<sup>&reg;</sup>. The requirements of the application were set forth by the professors of Foundations of Software Engineering at Johns Hopkins University. In fact, this online-murder-mystery board game is the final project of the aforementioned course! We've moved through distinct software development lifecycle phases, providing deliverables all along the way. Until...we made it here. <b>"We?"</b>, you ask?</p>
 				&nbsp;&nbsp;&nbsp;
 
 				<h2>Team Concept Unicorn</h2>
@@ -97,32 +97,30 @@
 
 			<!-- Help -->
 			<div id="instruction">
-				<h2 class="text-center">Help</h2>
-				<h3>Matchmaking</h4>
-				<p>Click the Start Game button on the <a onlick="goToMainPage()">welcome page</a>.  You are now in the matchmaking queue and will need
-					<b>two</b> more players to start Clueless Unicorns.  Pro tip: Call <b>two</b> to <b>five</b> of your favorite pals to hop
-					in the game with you for quick queue times and friendly competition.
-				</p>
+				<h1 class="text-center">Help</h1>
+				<h3>Matchmaking</h3>
+				<p>Click the Start Game button on the <a onclick="displayHome()">welcome page</a> to join the matchmaking queue!  You will need
+					<b>two</b> more players to start a match of Clueless Unicorns.  Pro tip: Call <b>two</b> to <b>five</b> of your favorite pals to hop
+					in the game with you for quick queue times and friendly competition.</p>
 
 				<h3>Gameplay</h3>
-				<p>Clueless Unicorns, similar to Clue&reg;, is a turn-based board game.  Accordingly, most of the actions you may take during the game 
-					can only be performed during your <b>turn</b>.
+				<p>Clueless Unicorns, similar to Clue<sup>&reg;</sup>, is a turn-based board game.  Accordingly, most of the actions you may take during the game 
+					can only be performed during your <b>turn</b>.</p>
 
 				<h3>Movement</h3>
+				<p>Move your unicorn with the <kbd>&larr;</kbd> ,  <kbd>&uarr;</kbd> ,  <kbd>&rarr;</kbd> ,  and <kbd>&darr;</kbd> keys.
 				<p>If starting your turn in a room, you may move into one of the adjacent rooms.</p>
 				<p>If starting your turn in a hallway, you may:</p>
 				<ul>
 					<li>move into an adjacent, empty hallway.</li>
 					<ul>
-						<li>You will lose your turn if the adjacent hallways are occupied!</li>
+						<li><b>You will lose your turn if the adjacent hallways are occupied!</b></li>
 					</ul>
-					<li>take one of the four secret passageways.
-					<li>remain in the room.
+					<li>take one of the four secret passageways.</li>
+					<li>remain in the room.</li>
 					<ul>
 						<li>Only possible when placed at the scene of the crime during a player suggestion.</li>
 					</ul>
-					<li>Take a secret passage to a diagonally opposite room if there is one</li>
-					<li>If you were moved to the room by a suggestion made by another player, you may decide to stay there</li>
 				</ul>
 
 				<h3>Suggestion</h3>
@@ -131,32 +129,41 @@
 					your suggestion, the other players must disprove it.</p>
 
 				<h3>Disproval</h3>
-				<p>If you are prompted to disprove a suggestion, be sure to select one of your cards from the drop down menu and submit.
+				<p>If you are prompted to disprove a suggestion, be sure to select one of your cards from the drop down menu and submit.</p>
+
+				<h3>Notebook</h3>
+				<p>Write down notes at anytime during the game.  Leverage your note-taking skills to solve the murder before anyone else!</p>
 
 				<h3>Accusation</h3>
-				<p>Make an accusation at any time during your turn. Just be sure
+				<p>Make an accusation at any time during your turn. Just click the accusation button and select the suspect, weapon, and room 
+					from the drop-downs.</p>
 
+				<h3>Defeat</h3>
+				<p>You lose the game when:</p>
+				<ul>
+					<li>you make an inaccurate accusation.</li>
+					<li>another player solves the mystery before you.</li>
+				</ul>
+
+				<h3>Victory</h3>
+				<p>Solve the mystery and win the game with the right accusation!</p>
+				</br>
 				
+				<h1 class="text-center"><span class="glyphicon glyphicon-heart"></span></h1>	
 			</div>
 			<!-- End Help -->
 
 			<!-- Lobby -->
 			<div class="text-center" id="lobby">
-				<h4 class="text-center" id="playerCount"></h4>
-				<hr>
-
 				<div id="character">
+					<h4>In matchmaking queue...</h4>
+					<div class="lds-ripple"><div></div><div></div></div>
 					<h3 id="characterChoice"></h3>
-					<ul>
-						<li>When it is your turn, use the arrow keys to move your character to an adjacent room</li>
-						<li>Once there, you can make a suggestion or accusation</li>
-						<li>If you choose to accuse and your accusation is incorrect, you may no longer move in the game</li>
-					</ul>
 				</div>
 
 				<div class="text-center" id="character"></div>
 				<div id="characters">
-					<h4>Choose a character to join the game</h4>
+					<h4>Select your unicorn!</h4>
 					<div class="left" onclick="removeCharacter(0)" id="character0"></div>
 					<div class="left" onclick="removeCharacter(1)" id="character1"></div>
 					<div class="left" onclick="removeCharacter(2)" id="character2"></div>
@@ -164,7 +171,8 @@
 					<div class="left" onclick="removeCharacter(4)" id="character4"></div>
 					<div class="left" onclick="removeCharacter(5)" id="character5"></div>
 				</div>
-				<button type="button" class="btn btn-success btn-start" onclick="startGame()" id='startBtn' disabled>Start Game</button>
+
+				<button type="button" class="btn btn-info btn-start sharp bold" onclick="startGame()" id='startBtn' disabled>Start Game <span id="playerCount" class="badge"></span></button>
 			</div>
 			<!-- End Lobby -->
 

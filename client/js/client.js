@@ -58,7 +58,7 @@ function newConnection() {
 			});
 
 			socket.on('newPlayer', function(data) {
-				document.getElementById('playerCount').innerHTML = data.count + "/6 players";
+				document.getElementById('playerCount').innerHTML = data.count + "";
 				playerInfo.id = data.id;
                 displayCharacters(data.characters);
                 resolve();
@@ -84,7 +84,7 @@ function main() {
 		});
 
 		socket.on('playerCount', function(data) {
-            document.getElementById('playerCount').innerHTML = data + "/6 players";
+            document.getElementById('playerCount').innerHTML = data + "";
         });
 
         // A player is not able to join the game
@@ -140,7 +140,7 @@ function main() {
         	gameboard.positions = data[0];
         	document.getElementById(gameboard.positions[data[1]][data[2]].room + data[3]).src = "";
         	gameboard.placeCharacters();
-            var msg =  data[5] + " is now in the " + data[4];
+            var msg =  data[5] + " moves to the " + data[4];
             addToActivityLog(msg);
         });
 
@@ -178,7 +178,7 @@ function main() {
         });
 
         socket.on('proofActivity', function(data) {
-            var msg = data + " has proved the suggestion false.";
+            var msg = data + " disproves the suggestion.";
             addToActivityLog(msg);
         });
 
@@ -224,7 +224,7 @@ function main() {
         });
 
         socket.on('proven', function(data) {
-        	var msg = data.name + " says " + data.proof + " is not the answer";
+        	var msg = data.name + " discloses " + data.proof + " is incorrect.";
             addToActivityLog(msg);
             document.getElementById('suggestion').disabled = true;
    	 		document.getElementById('accusation').disabled = true;
@@ -249,7 +249,7 @@ function main() {
         });
 
         socket.on('accusationResponse', function(data) {
-            var html = "<div>The cards in the secret envelope are: ";
+            var html = "<div>Case File Confidential: ";
             for(var i = 0; i < 3; i++) {
                 html += data[1].cards[i].name + ", ";
             }
@@ -397,7 +397,6 @@ function displayInstructions() {
     document.getElementById('lobby').style.display = 'none';
     document.getElementById("character").style.display = 'none';
     document.getElementById('gamearea').style.display = 'none';
-    document.getElementById('about').style.display = 'none';
     socket.emit('remove');
 }
 
@@ -407,17 +406,6 @@ function displayHome() {
     document.getElementById('lobby').style.display = 'none';
     document.getElementById("character").style.display = 'none';
     document.getElementById('gamearea').style.display = 'none';
-    document.getElementById('about').style.display = 'none';
-    socket.emit('remove');
-}
-
-function about() {
-    document.getElementById('instruction').style.display = 'none';
-    document.getElementById('main').style.display = 'none';
-    document.getElementById('lobby').style.display = 'none';
-    document.getElementById("character").style.display = 'none';
-    document.getElementById('gamearea').style.display = 'none';
-    document.getElementById('about').style.display = 'inline-block';
     socket.emit('remove');
 }
 
@@ -440,7 +428,6 @@ function returnToMain() {
     document.getElementById('lobby').style.display = 'none';
     document.getElementById("character").style.display = 'none';
     document.getElementById('instruction').style.display = 'none';
-    document.getElementById('about').style.display = 'none';
     document.getElementById('startBtn').disabled = true;
     document.getElementById('chatWindow').innerHTML = "";
     document.getElementById('activityLog').innerHTML = "";
