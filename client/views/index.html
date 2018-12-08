@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Unicorns</title>
+		<link rel="shortcut icon" href="/client/img/favicon.ico" type="image/x-icon"/>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/client/css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Text+Me+One' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body>
+		<header>
+			<nav id="header-nav" class="navbar navbar-default">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="pull-left visible-md visible-lg" onclick="displayHome()">
+							<div id="logo-img" alt="Logo image"></div>
+						</a>
+
+						<div class="navbar-brand">
+							<a onclick="displayHome()"><h1>Clueless Unicorns</h1></a>
+						</div>
+
+						<button id="navbarToggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+
+					<div id="collapsable-nav" class="collapse navbar-collapse">
+						
+						<ul id="nav-list" class="nav navbar-nav navbar-right">
+							<li><a onclick="displayInstructions()">Help</a></li>
+							<li><code class="navbar-text navbar-right" id="gameStatus"></code></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container text-center">
+			<!-- Welcome -->
+			<div id="main">
+				<div class="jumbotron text-left uni-purp sharp">
+					<h1 class="display-4">Murder, Madness, and Mythical Creatures!</h1>
+					<hr class="my-4">
+					<div class="btn-group btn-group-lg" role="group" id='game'>
+						<button type="button" class="btn btn-info btn-start bold sharp" onclick="createGame()" id="createBtn">Start Game</button>
+					</div>
+					<div id="msgDiv">
+						Full Game, sorry!.
+					</div>
+					</br></br></br>
+					<p><small>Consult the <a onclick="displayInstructions()">help page</a> if you need <a onclick="displayInstructions()">help</a>!</small></p>
+				</div>
+
+				<h2 class="text-center">Clueless Unicorns</h2>
+				<p>Clueless Unicorns is a simplified version of the popular board game Clue&reg;. The requirements of the application were set forth by the professors of Foundations of Software Engineering at Johns Hopkins University. In fact, this online-murder-mystery board game is the final project of the aforementioned course! We've moved through distinct software development lifecycle phases, providing deliverables all along the way. Until...we made it here. <b>"We?"</b>, you ask?</p>
+				&nbsp;&nbsp;&nbsp;
+
+				<h2>Team Concept Unicorn</h2>
+					<div class="col-md-12">
+						<div class="thumbnail inline sharp">
+							<img src="/client/img/krista.jpg" class="mugshot" alt="Krista Delap">
+							<div class="caption">
+								<h3>Krista Delap</h3>
+								<p>Lead Tester & Lead QA Engineer</p>
+							</div>
+						</div>
+						<div class="thumbnail inline sharp">
+							<img src="/client/img/jordan.jpg" class="mugshot" alt="Jordan Foster">
+							<div class="caption">
+								<h3>Jordan Foster</h3>
+								<p>Lead Programmer & Config Mgmt</p>
+							</div>
+						</div>
+						<div class="thumbnail inline sharp">
+							<img src="/client/img/ryan.jpg" class="mugshot" alt="Ryan Kelly">
+							<div class="caption">
+								<h3>Ryan Kelly</h3>
+								<p>Lead Architect & is R. Kelly</p>
+							</div>
+						</div>
+						<div class="thumbnail inline sharp">
+							<img src="/client/img/matt.jpg" class="mugshot" alt="Matthew Kelso">
+							<div class="caption">
+								<h3>Matthew Kelso</h3>
+								<p>Project Manager & Graphic Artist</p>
+							</div>
+						</div>
+					</div>
+			</div>
+			<!-- End Welcome -->
+
+			<!-- Help -->
+			<div id="instruction">
+				<h2 class="text-center">Help</h2>
+				<h3>Matchmaking</h4>
+				<p>Click the Start Game button on the <a onlick="goToMainPage()">welcome page</a>.  You are now in the matchmaking queue and will need
+					<b>two</b> more players to start Clueless Unicorns.  Pro tip: Call <b>two</b> to <b>five</b> of your favorite pals to hop
+					in the game with you for quick queue times and friendly competition.
+				</p>
+
+				<h3>Gameplay</h3>
+				<p>Clueless Unicorns, similar to Clue&reg;, is a turn-based board game.  Accordingly, most of the actions you may take during the game 
+					can only be performed during your <b>turn</b>.
+
+				<h3>Movement</h3>
+				<p>If starting your turn in a room, you may move into one of the adjacent rooms.</p>
+				<p>If starting your turn in a hallway, you may:</p>
+				<ul>
+					<li>move into an adjacent, empty hallway.</li>
+					<ul>
+						<li>You will lose your turn if the adjacent hallways are occupied!</li>
+					</ul>
+					<li>take one of the four secret passageways.
+					<li>remain in the room.
+					<ul>
+						<li>Only possible when placed at the scene of the crime during a player suggestion.</li>
+					</ul>
+					<li>Take a secret passage to a diagonally opposite room if there is one</li>
+					<li>If you were moved to the room by a suggestion made by another player, you may decide to stay there</li>
+				</ul>
+
+				<h3>Suggestion</h3>
+				<p>Gather clues to solve the mystery using the suggest feature.  When in a room, click the suggest button to select the 
+					suspect and weapon of interest. The suggested room is automatically set to your current location.  Once you've made 
+					your suggestion, the other players must disprove it.</p>
+
+				<h3>Disproval</h3>
+				<p>If you are prompted to disprove a suggestion, be sure to select one of your cards from the drop down menu and submit.
+
+				<h3>Accusation</h3>
+				<p>Make an accusation at any time during your turn. Just be sure
+
+				
+			</div>
+			<!-- End Help -->
+
+			<!-- Lobby -->
+			<div class="text-center" id="lobby">
+				<h4 class="text-center" id="playerCount"></h4>
+				<hr>
+
+				<div id="character">
+					<h3 id="characterChoice"></h3>
+					<ul>
+						<li>When it is your turn, use the arrow keys to move your character to an adjacent room</li>
+						<li>Once there, you can make a suggestion or accusation</li>
+						<li>If you choose to accuse and your accusation is incorrect, you may no longer move in the game</li>
+					</ul>
+				</div>
+
+				<div class="text-center" id="character"></div>
+				<div id="characters">
+					<h4>Choose a character to join the game</h4>
+					<div class="left" onclick="removeCharacter(0)" id="character0"></div>
+					<div class="left" onclick="removeCharacter(1)" id="character1"></div>
+					<div class="left" onclick="removeCharacter(2)" id="character2"></div>
+					<div class="left" onclick="removeCharacter(3)" id="character3"></div>
+					<div class="left" onclick="removeCharacter(4)" id="character4"></div>
+					<div class="left" onclick="removeCharacter(5)" id="character5"></div>
+				</div>
+				<button type="button" class="btn btn-success btn-start" onclick="startGame()" id='startBtn' disabled>Start Game</button>
+			</div>
+			<!-- End Lobby -->
+
+			<!-- Board -->
+			<div id="gamearea">
+				<div class="row">
+					<div class="col-md-6" id="gameboard">
+						<div class='float sixteen room' id='bathroom'>
+							<img class='pos1 img' id='bathroom1' src=''>
+							<img class='pos2 img' id='bathroom2' src=''>
+							<img src="" class="pos3 img" id="bathroom3">
+							<img src="" class="pos4 img" id="bathroom4">
+							<img src="" class="pos5 img" id="bathroom5">
+							<img src="" class="pos6 img" id="bathroom6">
+						</div>
+						<div class='float quarter'><img class='pos8 img' id='SH1' src=''></div>
+						<div class='float eighteen room' id='napping-spot'>
+							<img class='pos1 img' id='napping-spot1' src=''>
+							<img class='pos2 img' id='napping-spot2' src=''>
+							<img src="" class="pos3 img" id="napping-spot3">
+							<img src="" class="pos4 img" id="napping-spot4">
+							<img src="" class="pos5 img" id="napping-spot5">
+							<img src="" class="pos6 img" id="napping-spot6">
+						</div>
+						<div class='float quarter'><img class='pos8 img' id='HL1' src=''></div>
+						<div class='float sixteen room' id='treasure-room'>
+							<img class='pos1 img' id='treasure-room1' src=''>
+							<img class='pos2 img' id='treasure-room2' src=''>
+							<img src="" class="pos3 img" id="treasure-room3">
+							<img src="" class="pos4 img" id="treasure-room4">
+							<img src="" class="pos5 img" id="treasure-room5">
+							<img src="" class="pos6 img" id="treasure-room6">
+						</div>
+						<div class='float vHallway1'><img class='pos7 img' id='SL1' src=''></div>
+						<div class='float vHallway2'><img class='pos7 img' id='HB1' src=''></div>
+						<div class='float vHallway3'><img class='pos7 img' id='LD1' src=''></div>
+						<div class='float sixteen room' id='garden-shed'>
+							<img class='pos1 img' id='garden-shed1' src=''>
+							<img class='pos2 img' id='garden-shed2' src=''>
+							<img src="" class="pos3 img" id="garden-shed3">
+							<img src="" class="pos4 img" id="garden-shed4">
+							<img src="" class="pos5 img" id="garden-shed5">
+							<img src="" class="pos6 img" id="garden-shed6">
+						</div>
+						<div class='float quarter'><img class='pos8 img' id='LB1' src=''></div>
+						<div class='float eighteen room' id='rainbow-room'>
+							<img class='pos1 img' id='rainbow-room1' src=''>
+							<img class='pos2 img' id='rainbow-room2' src=''>
+							<img src="" class="pos3 img" id="rainbow-room3">
+							<img src="" class="pos4 img" id="rainbow-room4">
+							<img src="" class="pos5 img" id="rainbow-room5">
+							<img src="" class="pos6 img" id="rainbow-room6">
+						</div>
+						<div class='float quarter'><img class='pos8 img' id='BD1' src=''></div>
+						<div class='float sixteen room' id='unicorn-cave'>
+							<img class='pos1 img' id='unicorn-cave1' src=''>
+							<img class='pos2 img' id='unicorn-cave2' src=''>
+							<img src="" class="pos3 img" id="unicorn-cave3">
+							<img src="" class="pos4 img" id="unicorn-cave4">
+							<img src="" class="pos5 img" id="unicorn-cave5">
+							<img src="" class="pos6 img" id="unicorn-cave6">
+						</div>
+						<div class='float vHallway1'><img class='pos7 img' id='LC1' src=''></div>
+						<div class='float vHallway2'><img class='pos7 img' id='BB1' src=''></div>
+						<div class='float vHallway3'><img class='pos7 img' id='DK1' src=''></div>
+						<div class='float sixteen room' id='ice-cream-shop'>
+							<img class='pos1 img' id='ice-cream-shop1' src=''>
+							<img class='pos2 img' id='ice-cream-shop2' src=''>
+							<img src="" class="pos3 img" id="ice-cream-shop3">
+							<img src="" class="pos4 img" id="ice-cream-shop4">
+							<img src="" class="pos5 img" id="ice-cream-shop5">
+							<img src="" class="pos6 img" id="ice-cream-shop6">
+						</div>
+						<div class='float quarter'><img class='pos8 img' id='CB1' src=''></div>
+						<div class='float eighteen room' id='stable'>
+							<img class='pos1 img' id='stable1' src=''>
+							<img class='pos2 img' id='stable2' src=''>
+							<img src="" class="pos3 img" id="stable3">
+							<img src="" class="pos4 img" id="stable4">
+							<img src="" class="pos5 img" id="stable5">
+							<img src="" class="pos6 img" id="stable6">
+						</div>
+						<div class='float quarter'><img class='pos8 img' id='BK1' src=''></div>
+						<div class='float sixteen room' id='playroom'>
+							<img class='pos1 img' id='playroom1' src=''>
+							<img class='pos2 img' id='playroom2' src=''>
+							<img src="" class="pos3 img" id="playroom3">
+							<img src="" class="pos4 img" id="playroom4">
+							<img src="" class="pos5 img" id="playroom5">
+							<img src="" class="pos6 img" id="playroom6">
+						</div>
+
+						<div class="btn-toolbar" role="toolbar" aria-label="..." id="buttons">
+				    		<div class="btn-group" role="group" aria-label="...">
+				        		<button type="button" class="btn btn-primary">
+				            		<span class="glyphicon glyphicon-arrow-left" aria-hidden="true" onclick="movePlayer('left')"></span>
+				        		</button>
+				        		<button type="button" class="btn btn-primary">
+				            		<span class="glyphicon glyphicon-arrow-right" aria-hidden="true" onclick="movePlayer('right')"></span>
+				        		</button>
+				        		<button type="button" class="btn btn-primary">
+				            		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true" onclick="movePlayer('up')"></span>
+				        		</button>
+				        		<button type="button" class="btn btn-primary">
+				            		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true" onclick="movePlayer('down')"></span>
+				        		</button>
+				    		</div>
+
+				    		<div class="btn-group" role="group" aria-label="..." >
+				        		<button type="button" class="btn btn-info" onclick="movePlayer('secret')">Secret Passage</button>
+				    		</div>
+
+				    		<div class="btn-group" role="group" aria-label="...">
+				        		<button type="button" class="btn btn-info" onclick="makeSuggestion()" id="suggestion" disabled>Suggestion</button>
+				    		</div>
+
+				    		<div class="btn-group" role="group" aria-label="...">
+				        		<button type="button" class="btn btn-danger" onclick="makeAccusation()" id="accusation" disabled>Accusation</button>
+				    		</div>
+
+				    		<div class="btn-group" role="group" aria-label="...">
+				        		<button type="button" class="btn btn-warning" id="endTurnBtn" onclick="endTurn()" disabled>End Turn</button>
+				    		</div>
+
+				    		<div class="btn-group" role="group" aria-label="...">
+				        		<button type="button" class="btn btn-warning" onclick="prove()" id="proveBtn" disabled>Prove</button>
+				    		</div>
+
+				    		<div class="btn-group" role="group" aria-label="...">
+				        		<button type="button" class="btn btn-warning" onclick="exitGame()">Exit Game</button>
+				    		</div>
+
+				    		<div class="btn-group" role="group" aria-label="...">
+				        		<button type="button" class="btn btn-warning" onclick="endGame()">End Game</button>
+				    		</div>
+						</div>
+
+					</div>
+
+                    <div class="col-md-3" id="gameInfo">
+                        <div>
+                            <div id="myPlayer" class="col-md-6 info text-center lightBackground">
+                                <h6>My character</h6>
+                                <img src="" id="myImg">
+                                <h6 id="myCharacter"></h6>
+                            </div>
+                            <div class="col-md-6 info text-center lightBackground">
+                                <h6>Current turn</h6>
+                                <img src="" id="playerImg">
+                                <h6 id="turn"></h6>
+                            </div>
+                        </div>
+
+                        <div class="actionWindow lightBackground">
+                            <div class="text-center">My Cards</div>
+                            <div id="myCards"></div>
+
+                            <div class="text-center">Activity Log</div>
+                            <div id="activityLog"></div>
+
+                            <div class="text-center">Game Chat</div>
+                            <div id="chatWindow"></div>
+                            <form id="chatForm">
+                                <input type="text" name="chat" id="chatInput" placeholder="Enter message here...">
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3 lightBackground" id="note">
+                        <div>
+                            <table width="100%">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        Suspects
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Jingles Fizzle Flanks</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Cookie Rainbow Dancer</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Sunny Cloverfield</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Cupcake Sugar Socks</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Candy Floss Angel Ears</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Princess Cloudburst</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr>
+                        <div>
+                            <table width="100%">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        Weapons
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Love</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Rainbow Fart</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Hoove</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Laserbeam</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Frostbreath</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Horn</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr>
+                        <div>
+                            <table width="100%">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        Rooms
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ice Cream Shop</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Treasure Room</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Playroom</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Garden Shed</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Napping Spot</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Bathroom</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Unicorn Cave</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <td>Rainbow Room</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+								<tr>
+									<td>Stable</td>
+									<td><input type="checkbox"></td>
+									<td><input type="checkbox"></td>
+									<td><input type="checkbox"></td>
+									<td><input type="checkbox"></td>
+								</tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+				</div>
+
+				<div id="suggestionModal" class="modal">
+					<div class="modal-content">
+						<div>
+							<h4>Select a suspect</h4>
+							<select id="suspect1">
+								<option value="Candy Floss Angel Ears">Candy Floss Angel Ears</option>
+								<option value="Cookie Rainbow Dancer">Cookie Rainbow Dancer</option>
+								<option value="Sunny Cloverfield">Sunny Cloverfield</option>
+								<option value="Cupcake Sugar Socks">Cupcake Sugar Socks</option>
+								<option value="Jingles Fizzle Flanks">Jingles Fizzle Flanks</option>
+								<option value="Princess Cloudburst">Princess Cloudburst</option>
+							</select>
+						</div>
+
+						<div>
+							<h4>Select a weapon</h4>
+							<select id="weapon1">
+								<option value="Frostbreath">Frostbreath</option>
+								<option value="Hoove">Hoove</option>
+								<option value="Rainbow Fart">Rainbow Fart</option>
+								<option value="Horn">Horn</option>
+								<option value="Love">Love</option>
+								<option value="Laserbeam">Laserbeam</option>
+							</select>
+						</div>
+
+						<div>
+							<h4>Select a room</h4>
+							<select id="room1">
+							</select>
+						</div>
+
+						<button type="button" onclick="getSuggestion()">Submit</button>
+					</div>
+				</div>
+
+				<div id="accusationModal" class="modal">
+					<div class="modal-content">
+						<div>
+							<h4>Select a suspect</h4>
+							<select id="suspect2">
+								<option value="Candy Floss Angel Ears">Candy Floss Angel Ears</option>
+								<option value="Cookie Rainbow Dancer">Cookie Rainbow Dancer</option>
+								<option value="Sunny Cloverfield">Sunny Cloverfield</option>
+								<option value="Cupcake Sugar Socks">Cupcake Sugar Socks</option>
+								<option value="Jingles Fizzle Flanks">Jingles Fizzle Flanks</option>
+								<option value="Princess Cloudburst">Princess Cloudburst</option>
+							</select>
+						</div>
+
+						<div>
+							<h4>Select a weapon</h4>
+							<select id="weapon2">
+								<option value="Frostbreath">Frostbreath</option>
+								<option value="Hoove">Hoove</option>
+								<option value="Rainbow Fart">Rainbow Fart</option>
+								<option value="Horn">Horn</option>
+								<option value="Love">Love</option>
+								<option value="Laserbeam">Laserbeam</option>
+							</select>
+						</div>
+
+						<div>
+							<h4>Select a room</h4>
+							<select id="room2">
+								<option value="Bathroom">Bathroom</option>
+								<option value="Napping Spot">Napping Spot</option>
+								<option value="Treasure Room">Treasure Room</option>
+								<option value="Garden Shed">Garden Shed</option>
+								<option value="Rainbow Room">Rainbow Room</option>
+								<option value="Unicorn Cave">Unicorn Cave</option>
+								<option value="Ice Cream Shop">Ice Cream Shop</option>
+								<option value="Stable">Stable</option>
+								<option value="Playroom">Playroom</option>
+							</select>
+						</div>
+						<button type="button" onclick="getAccusation()">Submit</button>
+					</div>
+				</div>
+
+				<div class="modal" id="proofModal">
+					<div class="modal-content">
+						<div>
+							<h4>Select an option</h4>
+							<select id="suggestionContent"></select>
+						</div>
+						<button type="button" onclick="getProof()">Submit</button>
+					</div>
+				</div>
+
+			</div>
+			<!-- End Board -->
+		</div>
+
+
+		<!-- Libraries -->
+		<script type="text/javascript" src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script type="text/javascript" src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+
+		<!-- JavaScript -->
+		<script type="text/javascript" src="/client/js/player.js"></script>
+		<script type="text/javascript" src="/client/js/card.js"></script>
+		<script type="text/javascript" src="/client/js/board.js"></script>
+		<script type="text/javascript" src="/client/js/client.js"></script>
+	</body>
+</html>

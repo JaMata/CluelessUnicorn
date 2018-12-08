@@ -1,24 +1,25 @@
-# README
+Hello.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Clueless Unicorns is a simplified version of the popular board game Clue. The requirements of the application were set forth by the professors of Foundations of Software Engineering at Johns Hopkins University. In fact, this online-murder-mystery board game is the final project of the aforementioned course! We've moved through distinct software development lifecycle phases, providing deliverables all along the way.
 
-Things you may want to cover:
+Team Concept Unicorn
+Krista Delap
+Jordan Foster
+Matt Kelso
+Ryan Kelly
 
-* Ruby version
+Fork the Repo & Run It!
+1. Clone the Repo. `git clone ...`
+2. Move into the Clueless DIR `cd ...`
+3. Run `npm install`
+4. Run `npm start` and we have Liftoff!
+5. Navigate to localhost:8080 in your favorite browser!
 
-* System dependencies
 
-* Configuration
+Deploy To Heroku! (requires Heroku CLI)
+1. Run `heroku create`
+2. Check the status of your branch `git status`
+3. Run `git push heroku master`
+4. Open it up with `heroku open`!
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Special Thanks to Team Zenith (@bevy90)!

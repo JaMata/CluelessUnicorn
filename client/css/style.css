@@ -1,0 +1,323 @@
+body {
+  font-size: 16px;
+  font-family: 'Text Me One', sans-serif;
+}
+
+/* HEADER */
+/*#header-nav {
+  background-color: #a5a5af;
+  border-radius: 0;
+  border: 0;
+}*/
+
+div {
+  box-sizing: border-box;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.sharp {
+  border-radius: 0px!important;
+}
+
+.uni-purp {
+  color: #ffffff;
+  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,0.7)), url('/client/img/jumbotron.gif') no-repeat center center;
+}
+
+.thumbnail {
+  border-radius: 0px!important;
+  border: 1px solid #9150ce;
+}
+
+.mugshot {
+  padding-top: .5em;
+  width: 135px;
+  height: 135px;
+}
+.inline {
+  display: inline-block;
+}
+
+#logo-img {
+  background: url('/client/img/smallClue.png') no-repeat;
+  background-size: 100%;
+  width: 35px;
+  height: 35px;
+  margin-top: 5px;
+  margin-right: 2px;
+  /*margin: 2px 2px 2px 0;*/
+}
+
+.navbar-brand {
+  /*padding-top: 40px; */
+}
+.navbar-brand h1 {
+  font-family: 'Text Me One', sans-serif;
+  color: #9150ce;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: .75;
+}
+.navbar-brand a:hover, .navbar-brand a:focus, #home a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#nav-list {
+  /*margin-top: 25px;*/
+}
+
+#nav-list a {
+  color: #9150ce;
+  text-align: center;
+}
+#nav-list a:hover {
+  color: #c04eed;
+  cursor: pointer;
+}
+#nav-list a span {
+  font-size: 3.0em;
+}
+
+#instruction, #about, #myCards, #activityLog, #chatWindow, #note {
+  text-align: left;
+}
+
+/* Main page */
+#msgDiv, #lobby, #gamearea, #instruction, #about {
+  display: none;
+}
+
+/* Lobby Page */
+.left {
+  width: 135px;
+  height: 198px;
+  float: left;
+  margin: 5px 5px 5px 5px;
+  display: none;
+}
+
+.left:hover {
+  box-shadow: 0 1px 5px 1px orange;
+}
+
+#character0 {
+  background: url('/client/img/characters/scarlet.png') no-repeat;
+}
+
+#character1 {
+  background: url('/client/img/characters/plum.png') no-repeat;
+}
+
+#character2 {
+  background: url('/client/img/characters/mustard.png') no-repeat;
+}
+
+#character3 {
+  background: url('/client/img/characters/peacock.png') no-repeat;
+}
+
+#character4 {
+  background: url('/client/img/characters/green.png') no-repeat;
+}
+
+#character5 {
+  background: url('/client/img/characters/white.png') no-repeat;
+}
+
+#character {
+  display: none;
+}
+/* End Lobby Page */
+
+/* gamearea */
+#gameboard {
+  width: 610px;
+  float: left;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+#myImg, #playerImg {
+  width: 20px;
+  height: 20px;
+}
+
+.room {
+  width: 140px;
+  height: 140px;
+  padding: 0;
+ /* -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);*/
+}
+
+.float {
+  float: left;
+  text-align: center;
+}
+
+.quarter {
+  height: 40px;
+  margin-top: 45px;
+  padding-top: 0;
+  background-color: #9F8170;
+  width: 95px;
+}
+
+.vHallway1 {
+  width: 40px;
+  height: 95px;
+  padding-left: 0;
+  margin-left: 45px;
+  background-color: #9F8170;
+}
+
+.vHallway2 {
+  width: 40px;
+  height: 95px;
+  padding-left: 0;
+  margin-left: 200px;
+  background-color: #9F8170;
+}
+
+.vHallway3 {
+  width: 40px;
+  height: 95px;
+  padding-left: 0;
+  margin-left: 200px;
+  background-color: #9F8170;
+}
+
+div.float {
+  box-sizing: border-box;
+}
+
+#bathroom {
+  background: url('/client/img/rooms/bathroom.png') no-repeat;
+}
+
+#napping-spot {
+  background: url('/client/img/rooms/napping-spot.png') no-repeat;
+}
+
+#treasure-room {
+  background: url('/client/img/rooms/treasure-room.png') no-repeat;
+}
+
+#unicorn-cave {
+  background: url('/client/img/rooms/unicorn-cave.png') no-repeat;
+}
+
+#rainbow-room {
+  background: url('/client/img/rooms/rainbow-room.png') no-repeat;
+}
+
+#garden-shed {
+  background: url('/client/img/rooms/garden-shed.png') no-repeat;
+}
+
+#ice-cream-shop {
+  background: url('/client/img/rooms/ice-cream-shop.png') no-repeat;
+}
+
+#stable {
+  background: url('/client/img/rooms/stable.png') no-repeat;
+}
+
+#playroom {
+  background: url('/client/img/rooms/playroom.png') no-repeat;
+}
+
+.pos7 {
+  margin: 37px auto;
+}
+
+.pos8 {
+  margin: 5px auto;
+}
+
+.chat {
+  float: left;
+  margin-left: 20px;
+}
+
+.actionWindow {
+  width: 100%;
+  margin-top: 6px;
+  overflow-y: scroll;
+  border: 1px solid green;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 6px;
+}
+
+#chatWindow, #activityLog, #myCards {
+  height: 145px;
+  background-color: #FFFFFF;
+  overflow-y: scroll;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+#chatInput {
+  width: 100%;
+  height: 28px;
+  border-radius: 4px;
+}
+
+#note {
+  width: 225px;
+  height: 645px;
+  border: 1px solid green;
+  margin-left: 5px;
+  border-radius: 4px;
+}
+
+#gameInfo {
+  width: 300px;
+  height: 605px;
+}
+
+.info {
+  border: 1px solid green;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.lightBackground {
+  background-color: #f4f4f4;
+}
+
+/* End gamearea */
+
+/* Modals */
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 20%;
+  text-align: left;
+}
+
+.modal button {
+  margin: 10px;
+}
