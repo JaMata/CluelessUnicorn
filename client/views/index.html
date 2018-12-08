@@ -57,7 +57,7 @@
 					<p><small>Consult the <a onclick="displayInstructions()">help page</a> if you need <a onclick="displayInstructions()">help</a>!</small></p>
 				</div>
 
-				<h2 class="text-center">Clueless Unicorns</h2>
+				<h2>Clueless Unicorns</h2>
 				<p>Clueless Unicorns is a simplified version of the popular board game Clue<sup>&reg;</sup>. The requirements of the application were set forth by the professors of Foundations of Software Engineering at Johns Hopkins University. In fact, this online-murder-mystery board game is the final project of the aforementioned course! We've moved through distinct software development lifecycle phases, providing deliverables all along the way. Until...we made it here. <b>"We?"</b>, you ask?</p>
 				&nbsp;&nbsp;&nbsp;
 
@@ -132,7 +132,7 @@
 				<p>If you are prompted to disprove a suggestion, be sure to select one of your cards from the drop down menu and submit.</p>
 
 				<h3>Notebook</h3>
-				<p>Write down notes at anytime during the game.  Leverage your note-taking skills to solve the murder before anyone else!</p>
+				<p>Update your notes at anytime during the game.  Leverage your note-taking skills to solve the murder before anyone else!</p>
 
 				<h3>Accusation</h3>
 				<p>Make an accusation at any time during your turn. Just click the accusation button and select the suspect, weapon, and room 
@@ -179,6 +179,25 @@
 			<!-- Board -->
 			<div id="gamearea">
 				<div class="row">
+					<div class="col-md-3 lightBackground" id="gameInfo">
+						<h4 class="text-center">Game Panel</h4>
+						&nbsp;
+
+						<div>Current Turn</div>
+						<h5 id="turn"></h5>
+						<img src="" id="playerImg">
+
+						<!-- Left Info Pane -->
+                        <div class="text-center">Cards</div>
+                        <div id="myCards"></div>
+                        &nbsp;
+
+                        <div class="text-center">Match Log</div>
+                        <div id="activityLog"></div>
+                    </div>
+                    <!-- End Left Info Pane -->
+
+                    <!-- Gameboard, Controls, and Chat -->
 					<div class="col-md-6" id="gameboard">
 						<div class='float sixteen room' id='bathroom'>
 							<img class='pos1 img' id='bathroom1' src=''>
@@ -265,257 +284,148 @@
 							<img src="" class="pos6 img" id="playroom6">
 						</div>
 
-						<div class="btn-toolbar" role="toolbar" aria-label="..." id="buttons">
-				    		<div class="btn-group" role="group" aria-label="...">
-				        		<button type="button" class="btn btn-primary">
-				            		<span class="glyphicon glyphicon-arrow-left" aria-hidden="true" onclick="movePlayer('left')"></span>
-				        		</button>
-				        		<button type="button" class="btn btn-primary">
-				            		<span class="glyphicon glyphicon-arrow-right" aria-hidden="true" onclick="movePlayer('right')"></span>
-				        		</button>
-				        		<button type="button" class="btn btn-primary">
-				            		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true" onclick="movePlayer('up')"></span>
-				        		</button>
-				        		<button type="button" class="btn btn-primary">
-				            		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true" onclick="movePlayer('down')"></span>
-				        		</button>
+						<!-- Flat button group -->
+						<div class="btn-toolbar" role="toolbar" aria-label="Game Controls" id="buttons">
+							<div class="btn-group" role="group" aria-label="Your Unicorn">
+								<img src="" id="myImg">
 				    		</div>
 
-				    		<div class="btn-group" role="group" aria-label="..." >
-				        		<button type="button" class="btn btn-info" onclick="movePlayer('secret')">Secret Passage</button>
+				    		<div class="btn-group" role="group" aria-label="Take Passage, Suggest, and Accuse" >
+				        		<button type="button" class="btn btn-info" onclick="movePlayer('secret')">Take Passage</button>
+				        		<button type="button" class="btn btn-success" onclick="makeSuggestion()" id="suggestion" disabled>Suggest</button>
+				        		<button type="button" class="btn btn-danger" onclick="makeAccusation()" id="accusation" disabled>Accuse</button>
 				    		</div>
 
-				    		<div class="btn-group" role="group" aria-label="...">
-				        		<button type="button" class="btn btn-info" onclick="makeSuggestion()" id="suggestion" disabled>Suggestion</button>
+				    		<div class="btn-group" role="group" aria-label="End Turn">
+				        		<button type="button" class="btn btn-primary" id="endTurnBtn" onclick="endTurn()" disabled>End Turn</button>
 				    		</div>
 
-				    		<div class="btn-group" role="group" aria-label="...">
-				        		<button type="button" class="btn btn-danger" onclick="makeAccusation()" id="accusation" disabled>Accusation</button>
+				    		<div class="btn-group" role="group" aria-label="Disprove">
+				        		<button type="button" class="btn btn-info" onclick="prove()" id="proveBtn" disabled>Disprove</button>
 				    		</div>
 
-				    		<div class="btn-group" role="group" aria-label="...">
-				        		<button type="button" class="btn btn-warning" id="endTurnBtn" onclick="endTurn()" disabled>End Turn</button>
-				    		</div>
-
-				    		<div class="btn-group" role="group" aria-label="...">
-				        		<button type="button" class="btn btn-warning" onclick="prove()" id="proveBtn" disabled>Prove</button>
-				    		</div>
-
-				    		<div class="btn-group" role="group" aria-label="...">
-				        		<button type="button" class="btn btn-warning" onclick="exitGame()">Exit Game</button>
-				    		</div>
-
-				    		<div class="btn-group" role="group" aria-label="...">
-				        		<button type="button" class="btn btn-warning" onclick="endGame()">End Game</button>
+				    		<div class="btn-group" role="group" aria-label="Leave and Conclude">
+				        		<button type="button" class="btn btn-warning" onclick="exitGame()">Leave</button>
+				        		<button type="button" class="btn btn-danger" onclick="endGame()">Conclude</button>
 				    		</div>
 						</div>
 
+						<!-- make it width 100% and dark purple? -->
+						<div class="text-center">Chat</div>
+                        <div id="chatWindow"></div>
+                        <form id="chatForm">
+                            <input type="text" name="chat" id="chatInput" placeholder="Post a message to the chatroom...">
+                        </form>
 					</div>
+					<!-- End Gameboard, Controls, and Chat -->
 
-                    <div class="col-md-3" id="gameInfo">
-                        <div>
-                            <div id="myPlayer" class="col-md-6 info text-center lightBackground">
-                                <h6>My character</h6>
-                                <img src="" id="myImg">
-                                <h6 id="myCharacter"></h6>
-                            </div>
-                            <div class="col-md-6 info text-center lightBackground">
-                                <h6>Current turn</h6>
-                                <img src="" id="playerImg">
-                                <h6 id="turn"></h6>
-                            </div>
-                        </div>
-
-                        <div class="actionWindow lightBackground">
-                            <div class="text-center">My Cards</div>
-                            <div id="myCards"></div>
-
-                            <div class="text-center">Activity Log</div>
-                            <div id="activityLog"></div>
-
-                            <div class="text-center">Game Chat</div>
-                            <div id="chatWindow"></div>
-                            <form id="chatForm">
-                                <input type="text" name="chat" id="chatInput" placeholder="Enter message here...">
-                            </form>
-                        </div>
-
-                    </div>
-
+					<!-- Notebookclass="form-control input-sm" -->
                     <div class="col-md-3 lightBackground" id="note">
                         <div>
-                            <table width="100%">
+                        	<h4 class="text-center" id="myCharacter"></h4>
+                    		<div class="text-center">Notebook</div>
+                    		&nbsp;
+                            <table width="100%" style="font-size:.8em;">
                                 <tr>
-                                    <td colspan="5" class="text-center">
-                                        Suspects
+                                    <td colspan="2" class="text-center">
+                                        <b>Suspects</b>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Jingles Fizzle Flanks</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Cookie Rainbow Dancer</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Sunny Cloverfield</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Cupcake Sugar Socks</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Candy Floss Angel Ears</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Princess Cloudburst</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
-                            </table>
-                        </div>
-                        <hr>
-                        <div>
-                            <table width="100%">
+                                <tr></tr>
                                 <tr>
-                                    <td colspan="5" class="text-center">
-                                        Weapons
+                                    <td colspan="2" class="text-center">
+                                        <b>Weapons</b>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Love</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Rainbow Fart</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Hoove</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Laserbeam</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Frostbreath</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Horn</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
-                            </table>
-                        </div>
-                        <hr>
-                        <div>
-                            <table width="100%">
+                                <tr></tr>
                                 <tr>
-                                    <td colspan="5" class="text-center">
-                                        Rooms
+                                    <td colspan="2" class="text-center">
+                                        <b>Rooms</b>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Ice Cream Shop</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Treasure Room</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Playroom</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Garden Shed</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Napping Spot</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Bathroom</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Unicorn Cave</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
                                 <tr>
                                     <td>Rainbow Room</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="color"></td>
                                 </tr>
 								<tr>
 									<td>Stable</td>
-									<td><input type="checkbox"></td>
-									<td><input type="checkbox"></td>
-									<td><input type="checkbox"></td>
-									<td><input type="checkbox"></td>
+									<td><input type="color"></td>
 								</tr>
                             </table>
                         </div>
@@ -523,10 +433,11 @@
                 </div>
 				</div>
 
+				<!-- bootstrap the modals -->
 				<div id="suggestionModal" class="modal">
 					<div class="modal-content">
 						<div>
-							<h4>Select a suspect</h4>
+							<h4>Select a Suspect</h4>
 							<select id="suspect1">
 								<option value="Candy Floss Angel Ears">Candy Floss Angel Ears</option>
 								<option value="Cookie Rainbow Dancer">Cookie Rainbow Dancer</option>
@@ -538,7 +449,7 @@
 						</div>
 
 						<div>
-							<h4>Select a weapon</h4>
+							<h4>Select a Weapon</h4>
 							<select id="weapon1">
 								<option value="Frostbreath">Frostbreath</option>
 								<option value="Hoove">Hoove</option>
@@ -550,19 +461,19 @@
 						</div>
 
 						<div>
-							<h4>Select a room</h4>
+							<h4>Select a Room</h4>
 							<select id="room1">
 							</select>
 						</div>
 
-						<button type="button" onclick="getSuggestion()">Submit</button>
+						<button type="button" onclick="getSuggestion()">Suggest</button>
 					</div>
 				</div>
 
 				<div id="accusationModal" class="modal">
 					<div class="modal-content">
 						<div>
-							<h4>Select a suspect</h4>
+							<h4>Select a Suspect</h4>
 							<select id="suspect2">
 								<option value="Candy Floss Angel Ears">Candy Floss Angel Ears</option>
 								<option value="Cookie Rainbow Dancer">Cookie Rainbow Dancer</option>
@@ -574,7 +485,7 @@
 						</div>
 
 						<div>
-							<h4>Select a weapon</h4>
+							<h4>Select a Weapon</h4>
 							<select id="weapon2">
 								<option value="Frostbreath">Frostbreath</option>
 								<option value="Hoove">Hoove</option>
@@ -586,7 +497,7 @@
 						</div>
 
 						<div>
-							<h4>Select a room</h4>
+							<h4>Select a Room</h4>
 							<select id="room2">
 								<option value="Bathroom">Bathroom</option>
 								<option value="Napping Spot">Napping Spot</option>
@@ -599,20 +510,19 @@
 								<option value="Playroom">Playroom</option>
 							</select>
 						</div>
-						<button type="button" onclick="getAccusation()">Submit</button>
+						<button type="button" onclick="getAccusation()">Accuse</button>
 					</div>
 				</div>
 
 				<div class="modal" id="proofModal">
 					<div class="modal-content">
 						<div>
-							<h4>Select an option</h4>
+							<h4>Select One of Your Cards</h4>
 							<select id="suggestionContent"></select>
 						</div>
 						<button type="button" onclick="getProof()">Submit</button>
 					</div>
 				</div>
-
 			</div>
 			<!-- End Board -->
 		</div>
